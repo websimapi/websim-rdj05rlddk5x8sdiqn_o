@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Agent Demo - iFrame Method</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .frame-container {
+            width: 100%;
+            height: 500px;
+            border: 1px solid #ccc;
+            margin: 20px 0;
+            position: relative;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .controls {
+            margin-bottom: 20px;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255,255,255,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+        .log {
+            margin-top: 20px;
+            border: 1px solid #eee;
+            padding: 10px;
+            height: 200px;
+            overflow-y: auto;
+            background: #f9f9f9;
+        }
+        button {
+            padding: 8px 16px;
+            margin-right: 10px;
+        }
+        input {
+            padding: 8px;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Privacy Agent Demo - iFrame Method</h1>
+    <p>This demonstrates the concept of an AI agent that helps remove personal information from websites.</p>
+    <p><strong>Note:</strong> This demo has significant limitations due to browser security restrictions.</p>
+    
+    <div class="controls">
+        <input type="text" id="url-input" placeholder="Enter website URL" value="https://example.com">
+        <button id="load-site">Load Site</button>
+        <button id="analyze">Analyze Page</button>
+        <button id="find-privacy">Find Privacy Options</button>
+    </div>
+    
+    <div class="frame-container">
+        <iframe id="site-frame" src="about:blank" sandbox="allow-same-origin allow-scripts"></iframe>
+        <div class="overlay" id="overlay">
+            <h2>Security Limitation</h2>
+            <p>Due to browser security restrictions (Same-Origin Policy), direct interaction with other sites via iframe is extremely limited.</p>
+            <p>The frame will load, but JavaScript cannot access its contents if from a different origin.</p>
+            <p>Click "Load Site" to see the limitation in action.</p>
+        </div>
+    </div>
+    
+    <div class="log" id="log">
+        <div>--- Agent Log ---</div>
+    </div>
+    
+    <h2>Limitations of iFrame Method</h2>
+    <ul>
+        <li>Cross-Origin Restrictions: Cannot access DOM of other websites</li>
+        <li>Content Security Policy: Many sites block iframe embedding entirely</li>
+        <li>No ability to handle authentication</li>
+        <li>Cannot navigate between pages reliably</li>
+    </ul>
+    
+    <script src="iframe-demo.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"4c6229722a6346bc8eb5cb0e5eae5d41","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
