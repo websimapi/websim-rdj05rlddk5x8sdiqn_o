@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Agent Demo - iFrame Method</title>
+    <title>Privacy Agent Demo - Enhanced with CORS Proxies</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -43,55 +43,164 @@
             margin-top: 20px;
             border: 1px solid #eee;
             padding: 10px;
-            height: 200px;
+            height: 300px;
             overflow-y: auto;
             background: #f9f9f9;
+            font-family: monospace;
+            font-size: 14px;
         }
         button {
             padding: 8px 16px;
             margin-right: 10px;
+            background: #4a5;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #3b4;
         }
         input {
             padding: 8px;
             width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .tabs {
+            display: flex;
+            margin-bottom: 0;
+            border-bottom: 1px solid #ccc;
+        }
+        .tab {
+            padding: 10px 20px;
+            background: #f1f1f1;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            border-bottom: none;
+            margin-right: 5px;
+            border-radius: 5px 5px 0 0;
+        }
+        .tab.active {
+            background: white;
+            font-weight: bold;
+        }
+        .tab-content {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .proxy-status {
+            margin-top: 15px;
+            padding: 10px;
+            background: #f8f8f8;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .proxy-list {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+        .proxy-list li {
+            margin-bottom: 5px;
+        }
+        .note {
+            background: #ffe;
+            padding: 10px;
+            border-left: 4px solid #fd7;
+            margin: 15px 0;
         }
     </style>
 </head>
 <body>
-    <h1>Privacy Agent Demo - iFrame Method</h1>
+    <h1>Privacy Agent Demo - Enhanced with CORS Proxies</h1>
     <p>This demonstrates the concept of an AI agent that helps remove personal information from websites.</p>
-    <p><strong>Note:</strong> This demo has significant limitations due to browser security restrictions.</p>
     
-    <div class="controls">
-        <input type="text" id="url-input" placeholder="Enter website URL" value="https://example.com">
-        <button id="load-site">Load Site</button>
-        <button id="analyze">Analyze Page</button>
-        <button id="find-privacy">Find Privacy Options</button>
+    <div class="tabs">
+        <div class="tab active" data-tab="browser-demo">Browser Demo with CORS Proxies</div>
+        <div class="tab" data-tab="desktop-app">Desktop App Concept</div>
     </div>
     
-    <div class="frame-container">
-        <iframe id="site-frame" src="about:blank" sandbox="allow-same-origin allow-scripts"></iframe>
-        <div class="overlay" id="overlay">
-            <h2>Security Limitation</h2>
-            <p>Due to browser security restrictions (Same-Origin Policy), direct interaction with other sites via iframe is extremely limited.</p>
-            <p>The frame will load, but JavaScript cannot access its contents if from a different origin.</p>
-            <p>Click "Load Site" to see the limitation in action.</p>
+    <div id="browser-demo" class="tab-content active">
+        <p>This version attempts to bypass Cross-Origin Resource Sharing (CORS) restrictions using multiple proxy services.</p>
+        
+        <div class="note">
+            <strong>Note:</strong> Despite using CORS proxies, browser security will still limit functionality. These techniques
+            demonstrate why a desktop application would be more effective for a privacy agent.
         </div>
+        
+        <div class="controls">
+            <input type="text" id="url-input" placeholder="Enter website URL" value="https://example.com">
+            <button id="load-site">Load Site</button>
+            <button id="analyze">Analyze Page</button>
+            <button id="find-privacy">Find Privacy Options</button>
+        </div>
+        
+        <div class="frame-container">
+            <iframe id="site-frame" src="about:blank" sandbox="allow-same-origin allow-scripts"></iframe>
+            <div class="overlay" id="overlay">
+                <h2>CORS Proxy Enhancement</h2>
+                <p>This demo now tries multiple CORS proxies as fallbacks when direct access fails.</p>
+                <p>Enter a URL and click "Load Site" to see it in action.</p>
+            </div>
+        </div>
+        
+        <div class="proxy-status">
+            <h3>CORS Proxy Services</h3>
+            <p>The following proxy services will be tried in sequence if direct access fails:</p>
+            <ol class="proxy-list">
+                <li>corsproxy.io</li>
+                <li>cors-anywhere.herokuapp.com</li>
+                <li>api.allorigins.win</li>
+                <li>api.codetabs.com</li>
+                <li>cors-proxy.htmldriven.com</li>
+                <li>crossorigin.me</li>
+                <li>thingproxy.freeboard.io</li>
+                <li>yacdn.org</li>
+                <li>cors.bridged.cc</li>
+                <li>proxy.cors.sh</li>
+            </ol>
+            <p><strong>Important:</strong> Many public CORS proxies have usage limits or may be offline.</p>
+        </div>
+        
+        <div class="log" id="log">
+            <div>--- Agent Log ---</div>
+        </div>
+        
+        <h3>Limitations Even With CORS Proxies</h3>
+        <ul>
+            <li><strong>Content Modification:</strong> Proxies may modify content, breaking functionality</li>
+            <li><strong>JavaScript Execution:</strong> Dynamic sites won't function properly</li>
+            <li><strong>Authentication:</strong> Still cannot handle logins or sessions</li>
+            <li><strong>Form Submission:</strong> Cannot reliably submit forms</li>
+            <li><strong>Rate Limits:</strong> Public proxies often limit requests</li>
+        </ul>
     </div>
     
-    <div class="log" id="log">
-        <div>--- Agent Log ---</div>
+    <div id="desktop-app" class="tab-content">
+        <p>To see the desktop application concept (which bypasses browser restrictions), <a href="desktop-concept.html">click here</a>.</p>
+        <p>The desktop application is being developed and will provide more comprehensive functionality.</p>
     </div>
-    
-    <h2>Limitations of iFrame Method</h2>
-    <ul>
-        <li>Cross-Origin Restrictions: Cannot access DOM of other websites</li>
-        <li>Content Security Policy: Many sites block iframe embedding entirely</li>
-        <li>No ability to handle authentication</li>
-        <li>Cannot navigate between pages reliably</li>
-    </ul>
     
     <script src="iframe-demo.js"></script>
+    <script>
+        // Simple tab functionality
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Remove active class from all tabs
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                this.classList.add('active');
+                document.getElementById(this.dataset.tab).classList.add('active');
+            });
+        });
+    </script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"4c6229722a6346bc8eb5cb0e5eae5d41","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>

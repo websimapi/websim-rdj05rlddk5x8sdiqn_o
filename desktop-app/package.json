@@ -1,0 +1,30 @@
+{
+  "name": "privacy-agent-desktop",
+  "version": "0.1.0",
+  "description": "A desktop application for automating privacy data deletion requests",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "privacy",
+    "GDPR",
+    "CCPA",
+    "data deletion",
+    "automation"
+  ],
+  "author": "Privacy Agent Team",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^25.0.0",
+    "puppeteer": "^20.5.0",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
+    "puppeteer-extra-plugin-recaptcha": "^3.6.8",
+    "nedb": "^1.8.0",
+    "winston": "^3.8.2",
+    "node-fetch": "^3.3.1",
+    "cheerio": "^1.0.0-rc.12"
+  }
+}
